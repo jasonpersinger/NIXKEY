@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIXKEY Welcome Kit</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --nix-teal: #00CED1;
+            --forge-orange: #FF8C00;
+            --terminal-black: #121212;
+            --steel-white: #F5F5F5;
+            --gunmetal: #2F4F4F;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .no-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        @media print {
+            .no-print { display: none; }
+            body { background: white; padding: 0; }
+            .card { box-shadow: none; border: 1px solid #ddd; margin: 0; }
+        }
+
+        .card {
+            background: white;
+            width: 8.5in;
+            min-height: 11in;
+            padding: 0.75in;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--terminal-black);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 28pt;
+            letter-spacing: -1.5px;
+            color: var(--terminal-black);
+        }
+        .logo .slash { color: var(--forge-orange); font-weight: 300; }
+        .logo .key { color: var(--nix-teal); }
+
+        .tagline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10pt;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-weight: 900;
+            font-size: 16pt;
+            text-transform: uppercase;
+            border-left: 5px solid var(--forge-orange);
+            padding-left: 15px;
+            margin: 30px 0 15px 0;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .step {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .step-num {
+            font-weight: 900;
+            color: var(--nix-teal);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .warning-box {
+            background: var(--terminal-black);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .warning-box::after {
+            content: '!';
+            position: absolute;
+            right: -20px;
+            bottom: -40px;
+            font-size: 120pt;
+            font-weight: 900;
+            color: rgba(255,255,255,0.05);
+        }
+
+        .warning-box h3 {
+            color: var(--forge-orange);
+            margin-top: 0;
+            text-transform: uppercase;
+            font-size: 14pt;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        td {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 10pt;
+        }
+
+        .cmd {
+            font-family: 'JetBrains Mono', monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9pt;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-size: 9pt;
+            color: #888;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="no-print">
+        <button onclick="window.print()">Print Welcome Kit</button>
+    </div>
+
+    <div class="card">
+        <header>
+            <div class="logo">NIX<span class="slash">/</span><span class="key">KEY</span></div>
+            <div class="tagline">The Key to Digital Freedom</div>
+        </header>
+
+        <section>
+            <h2>01. Booting Your Drive</h2>
+            <div class="step-grid">
+                <div class="step">
+                    <span class="step-num">01</span>
+                    <strong>Plug In</strong><br>
+                    Insert into a USB 3.0 (Blue) port. If on a laptop, plug in your power cable for max speed.
+                </div>
+                <div class="step">
+                    <span class="step-num">02</span>
+                    <strong>The Trigger</strong><br>
+                    Power on and repeatedly tap your <strong>Boot Menu Key</strong>:
+                    <table style="margin-top: 10px;">
+                        <tr><td>DELL / LENOVO</td><td><strong>F12</strong></td></tr>
+                        <tr><td>HP / COMPAQ</td><td><strong>F9 or ESC</strong></td></tr>
+                        <tr><td>ASUS / ACER</td><td><strong>F2 or F12</strong></td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div class="warning-box">
+            <h3>The #1 Fix: Disable Secure Boot</h3>
+            <p>If your PC skips the USB and goes straight to Windows, you must disable "Secure Boot" in your BIOS. This is a security lock that often blocks non-Windows software.</p>
+            <p><strong>To fix:</strong> Enter BIOS (usually tap F2 or Del at startup), find "Secure Boot", set it to <strong>Disabled</strong>, and Save/Exit.</p>
+        </div>
+
+        <section>
+            <h2>02. Essential Commands</h2>
+            <p style="font-size: 10pt; margin-bottom: 15px;">Open the "Terminal" app in your Linux menu and try these basics:</p>
+            <table>
+                <tr><td width="30%"><span class="cmd">ls</span></td><td>List all files in your current folder.</td></tr>
+                <tr><td><span class="cmd">sudo apt install [app]</span></td><td>Install new software (vlc, discord, etc).</td></tr>
+                <tr><td><span class="cmd">lsblk</span></td><td>See all connected drives and USB sticks.</td></tr>
+                <tr><td><span class="cmd">df -h</span></td><td>Check how much free space is left on your NIXKEY.</td></tr>
+                <tr><td><span class="cmd">sudo reboot</span></td><td>Restart the system instantly.</td></tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>03. Live Persistence</h2>
+            <p>Your NIXKEY is configured with <strong>Persistence</strong>. This means you can save files, install apps, and change settings, and they will be there when you reboot. <strong>Don't forget to shut down properly to ensure your data is saved!</strong></p>
+        </section>
+
+        <footer>
+            NIXKEY.SHOP // Verified in Roanoke, VA // support@nixkey.shop
+        </footer>
+    </div>
+
+</body>
+</html>

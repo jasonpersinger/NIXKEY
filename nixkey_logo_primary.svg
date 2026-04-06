@@ -1,0 +1,17 @@
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- NIXKEY PRIMARY LOGO -->
+  <defs>
+    <style>
+      /* Note: We escaped the ampersand in the URL to fix the XML error */
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&amp;display=swap');
+      .nix { fill: #F5F5F5; font-family: 'Inter', sans-serif, Arial; font-weight: 900; font-size: 120px; letter-spacing: -6px; }
+      .slash { fill: #FF8C00; font-family: 'Inter', sans-serif, Arial; font-weight: 300; font-size: 120px; }
+      .key { fill: #00CED1; font-family: 'Inter', sans-serif, Arial; font-weight: 900; font-size: 120px; letter-spacing: -6px; }
+    </style>
+  </defs>
+  <text x="50" y="140">
+    <tspan class="nix">NIX</tspan>
+    <tspan class="slash" dx="10">/</tspan>
+    <tspan class="key" dx="10">KEY</tspan>
+  </text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" style="background-color:#121212; font-family:sans-serif;">
+
+  <!-- DEFINITIONS -->
+  <defs>
+    <style>
+      .text-nix { fill: #F5F5F5; font-weight: 900; }
+      .text-slash { fill: #FF8C00; font-weight: 300; }
+      .text-key { fill: #00CED1; font-weight: 900; }
+      .bg-prompt { fill: #1a1a1a; stroke: #333; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <!-- 1. PRIMARY LOGO (Horizontal) -->
+  <g transform="translate(100, 100)">
+    <text x="0" y="60" font-size="80" class="text-nix">NIX</text>
+    <text x="145" y="60" font-size="80" class="text-slash">/</text>
+    <text x="180" y="60" font-size="80" class="text-key">KEY</text>
+  </g>
+
+  <!-- 2. THE PROMPT ICON (Square-ish) -->
+  <g transform="translate(100, 250)">
+    <rect x="0" y="0" width="120" height="120" rx="20" class="bg-prompt" />
+    <text x="20" y="80" font-size="60" class="text-slash">&gt;_</text>
+    <rect x="95" y="40" width="10" height="45" fill="#00CED1">
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+    </rect>
+  </g>
+
+  <!-- 3. THE CIRCLE BADGE -->
+  <g transform="translate(300, 250)">
+    <circle cx="60" cy="60" r="60" fill="none" stroke="#00CED1" stroke-width="8" />
+    <text x="35" y="85" font-size="60" class="text-nix">N<tspan class="text-key">K</tspan></text>
+  </g>
+
+  <!-- 4. STACKED LOGO (Vertical) -->
+  <g transform="translate(500, 250)">
+    <text x="30" y="40" font-size="60" class="text-nix">NIX</text>
+    <rect x="30" y="55" width="80" height="4" fill="#FF8C00" />
+    <text x="30" y="110" font-size="60" class="text-key">KEY</text>
+  </g>
+
+</svg>

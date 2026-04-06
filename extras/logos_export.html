@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIXKEY Logo Assets</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --nix-teal: #00CED1;
+            --forge-orange: #FF8C00;
+            --terminal-black: #121212;
+            --steel-white: #F5F5F5;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 80px;
+        }
+
+        h1 { border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 40px; color: #666; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; }
+
+        .asset-box {
+            background: #222;
+            border-radius: 12px;
+            padding: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* LOGO VARIATIONS */
+
+        /* 1. PRIMARY LOGO (Concept A Refined) */
+        .logo-primary {
+            font-weight: 900;
+            font-size: 4rem;
+            letter-spacing: -3px;
+            color: var(--steel-white);
+        }
+        .logo-primary .slash { color: var(--forge-orange); font-weight: 300; margin: 0 5px; }
+        .logo-primary .key { color: var(--nix-teal); }
+
+        /* 2. THE PROMPT ICON */
+        .logo-prompt {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 3.5rem;
+            background: var(--terminal-black);
+            padding: 20px 40px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .logo-prompt .p { color: var(--forge-orange); margin-right: 15px; }
+        .logo-prompt .c { display: inline-block; width: 25px; height: 50px; background: var(--nix-teal); vertical-align: middle; margin-left: 10px; }
+
+        /* 3. STACKED LOGO */
+        .logo-stacked {
+            text-align: center;
+            line-height: 0.9;
+        }
+        .logo-stacked .nix { font-weight: 900; font-size: 3rem; display: block; letter-spacing: 2px; }
+        .logo-stacked .divider { height: 4px; background: var(--forge-orange); width: 60px; margin: 10px auto; }
+        .logo-stacked .key { font-weight: 300; font-size: 2.5rem; color: var(--nix-teal); letter-spacing: 5px; }
+
+        /* 4. CIRCLE MARK */
+        .logo-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 8px solid var(--nix-teal);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+            font-size: 3rem;
+            position: relative;
+        }
+        .logo-circle .slash { position: absolute; color: var(--forge-orange); font-size: 5rem; font-weight: 100; transform: rotate(15deg); opacity: 0.5; }
+
+        .light-bg { background: #fff !important; color: #121212 !important; }
+
+    </style>
+</head>
+<body>
+
+    <div class="section">
+        <h1>01 // Primary Brand Logo</h1>
+        <span class="label">Use for: Fourthwall Header, Packaging Main Logo</span>
+        <div class="asset-box">
+            <div class="logo-primary">NIX<span class="slash">/</span><span class="key">KEY</span></div>
+        </div>
+        <div class="asset-box light-bg">
+            <div class="logo-primary" style="color:#121212">NIX<span class="slash">/</span><span class="key">KEY</span></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h1>02 // The Terminal Prompt (Icon)</h1>
+        <span class="label">Use for: Favicon, Social Media Avatar, Stickers</span>
+        <div class="asset-box">
+            <div class="logo-prompt">
+                <span class="p">>_</span><span class="t">NIXKEY</span><span class="c"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h1>03 // Stacked Identity</h1>
+        <span class="label">Use for: T-shirts, Merchandise, "Unboxing" cards</span>
+        <div class="asset-box">
+            <div class="logo-stacked">
+                <span class="nix">NIX</span>
+                <div class="divider"></div>
+                <span class="key">KEY</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h1>04 // The "N/K" Mark</h1>
+        <span class="label">Use for: Small round stickers, Watermarks</span>
+        <div class="asset-box">
+            <div class="logo-circle">
+                <span class="slash">/</span>
+                <span>N<span style="color:var(--nix-teal)">K</span></span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

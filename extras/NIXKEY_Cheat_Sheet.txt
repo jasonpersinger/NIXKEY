@@ -1,0 +1,69 @@
+================================================================================
+    _   _______  ____ __ _______   __
+   / | / /  _/ |/ / //_// ____\ \ / /
+  /  |/ // / |   / ,<  / __/   \  / 
+ / /|  // / /   / /| |/ /___    / /  
+/_/ |_/___//_/|_/_/ |_/_____/   /_/   
+
+            LINUX COMMAND CHEAT SHEET (v1.1)
+================================================================================
+
+Welcome to the terminal! Don't be intimidated—it's just a way to talk 
+directly to your computer. Here are the most useful commands.
+
+--------------------------------------------------------------------------------
+1. MOVING AROUND (The Basics)
+--------------------------------------------------------------------------------
+- pwd          | "Print Working Directory" - Shows you where you are.
+- ls -h        | "List" - Shows files in human-readable sizes.
+- cd [folder]  | "Change Directory" - Moves you into a folder.
+- cd ..        | Goes back up one folder level.
+
+--------------------------------------------------------------------------------
+2. MANAGING FILES
+--------------------------------------------------------------------------------
+- mkdir [name] | Creates a new folder.
+- touch [name] | Creates a new empty file.
+- cp -r [a] [b]| "Copy" - Copies folder A to location B.
+- mv [a] [b]   | "Move" - Also used to rename files.
+- rm -rf [f]   | "Remove" - FORCE deletes a folder. (EXTREME CAUTION!)
+
+--------------------------------------------------------------------------------
+3. HARDWARE & NETWORK (Power User Stuff)
+--------------------------------------------------------------------------------
+- lsblk        | "List Block Devices" - Shows all connected drives/USB.
+- df -h        | "Disk Free" - Shows how much space is left on your drive.
+- ip a         | "IP Address" - Shows your network info and IP.
+- top / htop   | Shows you what apps are using your CPU/RAM.
+
+--------------------------------------------------------------------------------
+4. SYSTEM POWER (The "Sudo" Secret)
+--------------------------------------------------------------------------------
+- sudo [cmd]   | "SuperUser DO" - Runs a command with admin privileges.
+- sudo reboot  | Restarts the computer instantly.
+- sudo poweroff| Shuts down the computer instantly.
+- exit         | Closes the terminal window.
+
+--------------------------------------------------------------------------------
+5. INSTALLING NEW APPS
+--------------------------------------------------------------------------------
+Most of your NIXKEY distros use one of these "Package Managers":
+
+DEBIAN / UBUNTU / MINT / KALI / POP!_OS:
+- sudo apt update && sudo apt install [app]
+
+FEDORA / NOBARA / BAZZITE:
+- sudo dnf install [app]
+
+ARCH / ENDEAVOUROS / MANJARO:
+- sudo pacman -S [app]
+
+--------------------------------------------------------------------------------
+6. HELP!
+--------------------------------------------------------------------------------
+- [command] --help | Displays a quick manual for any command.
+- man [command]    | Displays the full "Manual" for a command.
+
+"You don't need to be a genius to use Linux. You just need the key."
+- NIXKEY.shop
+================================================================================

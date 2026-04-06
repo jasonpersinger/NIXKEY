@@ -1,0 +1,8 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- NIXKEY FAVICON - CONCEPT B (PROMPT) -->
+  <rect width="256" height="256" rx="40" fill="#121212"/>
+  <text x="30" y="170" font-family="monospace" font-weight="bold" font-size="140" fill="#FF8C00">&gt;_</text>
+  <rect x="190" y="70" width="25" height="110" fill="#00CED1">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+  </rect>
+</svg>

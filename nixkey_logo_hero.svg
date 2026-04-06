@@ -1,0 +1,15 @@
+<svg width="560" height="160" viewBox="0 0 520 140" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&amp;display=swap');
+      .nix { fill: #F5F5F5; font-family: 'Inter', sans-serif, Arial; font-weight: 900; font-size: 120px; letter-spacing: -6px; }
+      .slash { fill: #FF8C00; font-family: 'Inter', sans-serif, Arial; font-weight: 300; font-size: 120px; }
+      .key { fill: #00CED1; font-family: 'Inter', sans-serif, Arial; font-weight: 900; font-size: 120px; letter-spacing: -6px; }
+    </style>
+  </defs>
+  <text x="4" y="112">
+    <tspan class="nix">NIX</tspan>
+    <tspan class="slash" dx="8">/</tspan>
+    <tspan class="key" dx="8">KEY</tspan>
+  </text>
+</svg>

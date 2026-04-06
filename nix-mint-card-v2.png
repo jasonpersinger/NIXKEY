@@ -1,0 +1,43 @@
+<svg width="600" height="800" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- BACKGROUND -->
+  <rect width="600" height="800" fill="#121212"/>
+  
+  <!-- SUBTLE BRAND GLOW -->
+  <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#00CED1" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#121212" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="600" height="800" fill="url(#centerGlow)"/>
+
+  <!-- MINT LOGO (FAINT WATERMARK) -->
+  <g transform="translate(300, 380) scale(2)" opacity="0.05">
+    <path d="M 70 30 C 60 20 45 20 35 30 L 10 55 C 0 65 0 80 10 90 C 20 100 35 100 45 90 L 70 65 C 80 55 80 40 70 30 Z" fill="#00CED1" transform="translate(-40, -60)"/>
+  </g>
+
+  <!-- CENTER LABEL -->
+  <g transform="translate(300, 400)">
+    <!-- MAIN TITLE -->
+    <text text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="82" letter-spacing="-4" fill="#F5F5F5">
+      NIX<tspan fill="#FF8C00" font-weight="300">/</tspan><tspan fill="#00CED1">MINT</tspan>
+    </text>
+    
+    <!-- SUB-HEADER -->
+    <text y="60" text-anchor="middle" font-family="monospace" font-size="16" letter-spacing="6" fill="#666" text-transform="uppercase">
+      32GB // PERSISTENT // VERIFIED
+    </text>
+  </g>
+
+  <!-- MINIMAL FRAME ACCENTS -->
+  <g opacity="0.4">
+    <path d="M 40 40 L 80 40 M 40 40 L 40 80" fill="none" stroke="#FF8C00" stroke-width="2"/>
+    <path d="M 560 760 L 520 760 M 560 760 L 560 720" fill="none" stroke="#00CED1" stroke-width="2"/>
+  </g>
+
+  <!-- BOTTOM STATUS LINE -->
+  <g transform="translate(300, 740)">
+    <text text-anchor="middle" font-family="monospace" font-size="12" fill="#2F4F4F" letter-spacing="2">
+      HAND-FLASHED IN ROANOKE, VA // SHIPS WITH WELCOME KIT
+    </text>
+  </g>
+
+</svg>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIXKEY Label Templates</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@700&display=swap');
+
+        :root {
+            --nix-teal: #00CED1;
+            --forge-orange: #FF8C00;
+            --terminal-black: #121212;
+            --steel-white: #F5F5F5;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .no-print {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            .no-print { display: none; }
+            body { background: white; padding: 0; }
+            .sheet { box-shadow: none; border: none; margin: 0; }
+        }
+
+        .sheet {
+            background: white;
+            width: 8.5in;
+            min-height: 11in;
+            padding: 0.5in;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            box-sizing: border-box;
+        }
+
+        h2 { border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
+
+        .label-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        /* RECTANGLE LABEL (1.5" x 0.5") */
+        .label-rect {
+            width: 1.5in;
+            height: 0.5in;
+            border: 1px solid #ddd; /* Cutting guide */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--terminal-black);
+            color: white;
+            font-size: 12pt;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        /* CIRCLE LABEL (1" Round) */
+        .label-circle {
+            width: 1in;
+            height: 1in;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--terminal-black);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* LABEL STYLES */
+        .nix { color: var(--steel-white); }
+        .slash { color: var(--forge-orange); font-weight: 300; margin: 0 2px; }
+        .key { color: var(--nix-teal); }
+        .subtext { 
+            font-size: 6pt; 
+            letter-spacing: 1px; 
+            color: #888; 
+            margin-top: 2px;
+            text-transform: uppercase;
+        }
+
+        /* High Contrast Variation */
+        .bw { background: white !important; color: black !important; border: 1px solid black; }
+        .bw .nix { color: black; }
+        .bw .slash { color: black; }
+        .bw .key { color: black; }
+
+    </style>
+</head>
+<body>
+
+    <div class="no-print">
+        <h1>NIXKEY Label Generator</h1>
+        <p>This sheet is set to <strong>8.5" x 11"</strong> for printing. Labels are sized exactly for standard USB drives.</p>
+        <ul>
+            <li><strong>Rectangles:</strong> 1.5" x 0.5" (Side of drive)</li>
+            <li><strong>Circles:</strong> 1.0" (End of drive / Cap)</li>
+        </ul>
+        <button onclick="window.print()" style="padding: 10px 20px; background: var(--nix-teal); border: none; color: black; font-weight: bold; cursor: pointer; border-radius: 4px;">Print Labels</button>
+    </div>
+
+    <div class="sheet">
+        
+        <!-- SECTION: RECTANGLES -->
+        <section>
+            <h2>Rectangular Labels (1.5" x 0.5")</h2>
+            <div class="label-grid">
+                <!-- Row 1: Master Logo -->
+                <div class="label-rect"><span class="nix">NIX</span><span class="slash">/</span><span class="key">KEY</span></div>
+                <div class="label-rect"><span class="nix">NIX</span><span class="slash">/</span><span class="key">KEY</span></div>
+                <div class="label-rect bw"><span class="nix">NIX</span><span class="slash">/</span><span class="key">KEY</span></div>
+                <div class="label-rect bw"><span class="nix">NIX</span><span class="slash">/</span><span class="key">KEY</span></div>
+                
+                <!-- Row 2: Ubuntu -->
+                <div class="label-rect"><span class="nix">NIX</span><span class="slash">/</span><span class="key" style="color:var(--forge-orange)">UBUNTU</span></div>
+                <div class="label-rect"><span class="nix">NIX</span><span class="slash">/</span><span class="key" style="color:var(--forge-orange)">UBUNTU</span></div>
+                <div class="label-rect bw"><span class="nix">NIX</span><span class="slash">/</span><span class="key">UBUNTU</span></div>
+                <div class="label-rect bw"><span class="nix">NIX</span><span class="slash">/</span><span class="key">UBUNTU</span></div>
+
+                <!-- Row 3: Mint -->
+                <div class="label-rect"><span class="nix">NIX</span><span class="slash">/</span><span class="key" style="color:#90ee90">MINT</span></div>
+                <div class="label-rect"><span class="nix">NIX</span><span class="slash">/</span><span class="key" style="color:#90ee90">MINT</span></div>
+                <div class="label-rect bw"><span class="nix">NIX</span><span class="slash">/</span><span class="key">MINT</span></div>
+                <div class="label-rect bw"><span class="nix">NIX</span><span class="slash">/</span><span class="key">MINT</span></div>
+
+                <!-- Row 4: Multi-Boot -->
+                <div class="label-rect"><span class="nix">NIX</span><span class="slash">/</span><span class="key">MULTI</span></div>
+                <div class="label-rect"><span class="nix">NIX</span><span class="slash">/</span><span class="key">MULTI</span></div>
+                <div class="label-rect bw"><span class="nix">NIX</span><span class="slash">/</span><span class="key">MULTI</span></div>
+                <div class="label-rect bw"><span class="nix">NIX</span><span class="slash">/</span><span class="key">MULTI</span></div>
+            </div>
+        </section>
+
+        <!-- SECTION: CIRCLES -->
+        <section>
+            <h2>Circular Labels (1.0")</h2>
+            <div class="label-grid" style="grid-template-columns: repeat(6, 1fr);">
+                <!-- Teal versions -->
+                <div class="label-circle">
+                    <div style="font-size: 14pt; font-weight: 900; line-height: 0.8;">N<span style="color:var(--nix-teal)">K</span></div>
+                    <div class="subtext">NIXKEY</div>
+                </div>
+                <div class="label-circle">
+                    <div style="font-size: 14pt; font-weight: 900; line-height: 0.8;">N<span style="color:var(--nix-teal)">K</span></div>
+                    <div class="subtext">NIXKEY</div>
+                </div>
+                <!-- Orange versions -->
+                <div class="label-circle" style="border-color: var(--forge-orange);">
+                    <div style="font-size: 14pt; font-weight: 900; line-height: 0.8;">N<span style="color:var(--forge-orange)">K</span></div>
+                    <div class="subtext">NIXKEY</div>
+                </div>
+                <div class="label-circle" style="border-color: var(--forge-orange);">
+                    <div style="font-size: 14pt; font-weight: 900; line-height: 0.8;">N<span style="color:var(--forge-orange)">K</span></div>
+                    <div class="subtext">NIXKEY</div>
+                </div>
+                <!-- B&W versions -->
+                <div class="label-circle bw">
+                    <div style="font-size: 14pt; font-weight: 900; line-height: 0.8;">N<span style="color:black">K</span></div>
+                    <div class="subtext" style="color:black">NIXKEY</div>
+                </div>
+                <div class="label-circle bw">
+                    <div style="font-size: 14pt; font-weight: 900; line-height: 0.8;">N<span style="color:black">K</span></div>
+                    <div class="subtext" style="color:black">NIXKEY</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIXKEY.SHOP | Premium Linux USB Storefront</title>
+  <meta
+    name="description"
+    content="Premium bootable Linux USB drives, hand-flashed and verified in Roanoke, Virginia. Curated distros, fast hardware, clear setup, and persistence-ready builds."
+  >
+  <link rel="icon" type="image/svg+xml" href="./nixkey_favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    :root {
+      --terminal: #121212;
+      --terminal-soft: #17181a;
+      --terminal-elevated: rgba(20, 22, 24, 0.78);
+      --steel: #f5f5f5;
+      --steel-muted: rgba(245, 245, 245, 0.72);
+      --gunmetal: #2f4f4f;
+      --gunmetal-soft: rgba(47, 79, 79, 0.48);
+      --teal: #00ced1;
+      --teal-soft: rgba(0, 206, 209, 0.14);
+      --orange: #ff8c00;
+      --orange-soft: rgba(255, 140, 0, 0.16);
+      --line: rgba(255, 255, 255, 0.1);
+      --shadow: 0 18px 54px rgba(0, 0, 0, 0.34);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --max-width: 1240px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--steel);
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(0, 206, 209, 0.18), transparent 34%),
+        radial-gradient(circle at 85% 12%, rgba(255, 140, 0, 0.18), transparent 22%),
+        linear-gradient(180deg, #0f1011 0%, #121212 45%, #0f1011 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 96px 96px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 86%);
+      pointer-events: none;
+      opacity: 0.08;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+    }
+
+    .shell {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .eyebrow,
+    .badge,
+    .faq-label,
+    .footer-note,
+    .price-meta,
+    .section-kicker {
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: rgba(12, 13, 14, 0.68);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 78px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      padding: 6px;
+    }
+
+    .brand-wordmark {
+      width: 154px;
+      max-width: 100%;
+    }
+
+    .nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--steel-muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a {
+      transition: color 180ms ease;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      color: var(--steel);
+    }
+
+    .actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .button,
+    .ghost-button,
+    .filter-button,
+    .cart-toggle {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        background-color 180ms ease,
+        color 180ms ease,
+        box-shadow 180ms ease;
+      cursor: pointer;
+    }
+
+    .button:hover,
+    .ghost-button:hover,
+    .filter-button:hover,
+    .cart-toggle:hover {
+      transform: translateY(-1px);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, var(--teal), #6af7f1);
+      color: #041516;
+      font-weight: 800;
+      box-shadow: 0 12px 30px rgba(0, 206, 209, 0.26);
+    }
+
+    .button.alt {
+      background: linear-gradient(135deg, var(--orange), #ffbd66);
+      color: #1b1101;
+      box-shadow: 0 12px 30px rgba(255, 140, 0, 0.22);
+    }
+
+    .ghost-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: var(--steel);
+    }
+
+    .ghost-button:hover,
+    .ghost-button:focus-visible {
+      border-color: rgba(0, 206, 209, 0.4);
+      background: rgba(0, 206, 209, 0.08);
+    }
+
+    .cart-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.1);
+      min-width: 132px;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    .cart-summary-copy {
+      display: grid;
+      gap: 2px;
+    }
+
+    .cart-label {
+      font-size: 0.82rem;
+      color: var(--steel);
+      font-weight: 700;
+    }
+
+    .cart-total {
+      color: var(--steel-muted);
+      font-size: 0.74rem;
+      font-family: "JetBrains Mono", monospace;
+      text-transform: uppercase;
+    }
+
+    .cart-badge {
+      display: inline-grid;
+      place-items: center;
+      min-width: 26px;
+      height: 26px;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: var(--orange);
+      color: #120a00;
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+
+    .hero {
+      position: relative;
+      padding: 40px 0 20px;
+    }
+
+    .panel {
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+        rgba(18, 18, 18, 0.68);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-copy {
+      padding: 42px;
+      min-height: 100%;
+    }
+
+    .hero-frame {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.92fr);
+      gap: 30px;
+      align-items: center;
+    }
+
+    .hero-copy::before,
+    .story::before,
+    .faq::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 28%),
+        radial-gradient(circle at right top, rgba(0, 206, 209, 0.1), transparent 32%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--steel-muted);
+      font-size: 0.78rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 44px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--teal), transparent);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      letter-spacing: -0.05em;
+    }
+
+    h1 {
+      max-width: 8.5ch;
+      font-size: clamp(3.8rem, 7.4vw, 6.4rem);
+      line-height: 0.9;
+      text-wrap: balance;
+    }
+
+    .hero-copy p {
+      max-width: 48ch;
+      margin: 20px 0 0;
+      color: var(--steel-muted);
+      font-size: 1.08rem;
+      line-height: 1.72;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .hero-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .hero-facts span {
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      color: var(--steel-muted);
+      font-size: 0.84rem;
+      line-height: 1.4;
+    }
+
+    .hero-shot-card {
+      position: relative;
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+    }
+
+    .hero-logo-stage {
+      width: min(100%, 609px);
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-shot-brand {
+      width: 100%;
+      height: auto;
+    }
+
+    .trust-strip {
+      margin-top: 22px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      align-items: center;
+      justify-content: center;
+      color: var(--steel-muted);
+      font-size: 0.88rem;
+    }
+
+    .trust-strip span::before {
+      content: "/";
+      color: var(--orange);
+      margin-right: 10px;
+    }
+
+    main {
+      padding-bottom: 120px;
+    }
+
+    section {
+      margin-top: 76px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-head p {
+      margin: 14px 0 0;
+      max-width: 50ch;
+      color: var(--steel-muted);
+      line-height: 1.7;
+    }
+
+    .section-kicker {
+      color: var(--teal);
+      font-size: 0.78rem;
+      margin-bottom: 8px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 0.98;
+      text-wrap: balance;
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-button {
+      padding: 11px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: var(--steel-muted);
+      font-weight: 600;
+    }
+
+    .filter-button.active {
+      background: var(--teal-soft);
+      border-color: rgba(0, 206, 209, 0.38);
+      color: var(--steel);
+    }
+
+    .catalog-grid {
+      display: grid;
+      gap: 28px;
+    }
+
+    .catalog-group {
+      display: grid;
+      gap: 14px;
+    }
+
+    .catalog-group-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .catalog-group-copy {
+      max-width: 56ch;
+    }
+
+    .catalog-group-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .catalog-group-note {
+      margin-top: 6px;
+      color: var(--steel-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .catalog-group-count {
+      color: var(--steel-muted);
+      font-size: 0.72rem;
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .catalog-group-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      position: relative;
+      padding: 20px;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+        rgba(15, 16, 17, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: grid;
+      gap: 12px;
+      min-height: 100%;
+      transition:
+        transform 220ms ease,
+        border-color 220ms ease,
+        box-shadow 220ms ease;
+    }
+
+    .product-card:hover,
+    .product-card:focus-within {
+      transform: translateY(-3px);
+      border-color: rgba(0, 206, 209, 0.22);
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.22);
+    }
+
+    .product-top {
+      display: grid;
+      gap: 10px;
+    }
+
+    .product-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .product-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.12), transparent 48%),
+        var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .product-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .product-id {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--steel-muted);
+      font-size: 0.66rem;
+    }
+
+    .badge.accent {
+      color: #061617;
+      background: var(--accent-soft);
+      border-color: var(--accent-border);
+    }
+
+    .badge.accent strong {
+      color: var(--accent);
+    }
+
+    .product-card h3 {
+      font-size: 1.34rem;
+      line-height: 1.05;
+    }
+
+    .product-card p,
+    .product-subtitle {
+      margin: 0;
+      color: var(--steel-muted);
+      line-height: 1.6;
+    }
+
+    .product-subtitle {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .product-summary {
+      font-size: 0.95rem;
+    }
+
+    .product-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .product-meta span {
+      width: fit-content;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      color: var(--steel-muted);
+    }
+
+    .product-details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      transition:
+        max-height 220ms ease,
+        opacity 220ms ease,
+        transform 220ms ease,
+        margin-top 220ms ease;
+    }
+
+    .product-detail {
+      padding: 12px 13px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .product-detail-label {
+      display: block;
+      margin-bottom: 6px;
+      color: rgba(245, 245, 245, 0.48);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .product-detail-value {
+      color: var(--steel);
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    @media (min-width: 761px) {
+      .product-card {
+        align-content: start;
+        min-height: 468px;
+      }
+
+      .product-details {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-6px);
+        margin-top: -4px;
+      }
+
+      .product-card:hover .product-details,
+      .product-card:focus-within .product-details {
+        max-height: 240px;
+        opacity: 1;
+        transform: translateY(0);
+        margin-top: 0;
+      }
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .price-block strong {
+      display: block;
+      font-size: 2rem;
+      line-height: 0.9;
+    }
+
+    .price-meta {
+      color: var(--steel-muted);
+      font-size: 0.68rem;
+      margin-top: 8px;
+    }
+
+    .add-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-border);
+      background: var(--accent-soft);
+      color: var(--steel);
+      font-weight: 700;
+      cursor: pointer;
+      transition:
+        transform 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease;
+    }
+
+    .add-button:hover,
+    .add-button:focus-visible {
+      transform: translateY(-1px);
+      border-color: var(--accent-border-strong);
+      background: var(--accent-soft-strong);
+    }
+
+    .story-grid,
+    .faq-grid,
+    .footer-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .story-grid {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+
+    .story,
+    .faq,
+    .mini-panel {
+      padding: 28px;
+    }
+
+    .story p,
+    .faq p,
+    .footer-col p,
+    .footer-links a {
+      color: var(--steel-muted);
+      line-height: 1.7;
+    }
+
+    .story p + p {
+      margin-top: 16px;
+    }
+
+    .card-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .mini-panel {
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mini-panel strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .faq-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .faq-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--teal);
+      font-size: 0.74rem;
+    }
+
+    .faq h3 {
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      padding: 32px 0 72px;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      padding: 28px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+        rgba(13, 14, 15, 0.82);
+      box-shadow: var(--shadow);
+    }
+
+    .footer-col h3,
+    .footer-col h4 {
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--steel);
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      color: rgba(245, 245, 245, 0.48);
+      font-size: 0.72rem;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-frame,
+      .story-grid,
+      .faq-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .catalog-group-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner {
+        min-height: 72px;
+      }
+
+      .hero-copy,
+      .hero-shot-card,
+      .story,
+      .faq,
+      .mini-panel,
+      .footer-grid {
+        padding: 22px;
+      }
+
+      .hero-shot-card {
+        min-height: 260px;
+      }
+
+      .section-head {
+        align-items: start;
+      }
+
+      h1 {
+        max-width: 9.5ch;
+      }
+
+      .actions .ghost-button {
+        display: none;
+      }
+
+      .brand-wordmark {
+        width: 132px;
+      }
+
+      .trust-strip {
+        border-radius: 28px;
+        justify-content: start;
+      }
+
+      .product-footer {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .product-details {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-frame {
+        grid-template-columns: 1fr;
+      }
+
+      .catalog-group-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .catalog-group-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    window.SnipcartSettings = {
+      publicApiKey: "Mzc2ZDkwMzQtMjNiOS00MmRlLWE1YTAtNmRmYTZhNzU4NzlmNjM5MTEwNzA0NTk3OTM0MDcx",
+      loadStrategy: "on-user-interaction",
+      addProductBehavior: "none",
+      modalStyle: "side",
+      currency: "usd"
+    };
+    (function(){var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var m,g;(g=(m=window.SnipcartSettings).loadCSS)!=null||(m.loadCSS=!0);var y=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,f=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(f.forEach(function(t){return document.addEventListener(t,o)}),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],n=document.querySelector("#snipcart"),i=document.querySelector('src[src^="'.concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,'"][src$="snipcart.js"]')),e=document.querySelector('link[href^="'.concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,'"][href$="snipcart.css"]'));n||(n=document.createElement("div"),n.id="snipcart",n.setAttribute("hidden","true"),document.body.appendChild(n)),h(n),i||(i=document.createElement("script"),i.src="".concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,"/themes/v").concat(window.SnipcartSettings.version,"/default/snipcart.js"),i.async=!0,t.appendChild(i)),!e&&window.SnipcartSettings.loadCSS&&(e=document.createElement("link"),e.rel="stylesheet",e.type="text/css",e.href="".concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,"/themes/v").concat(window.SnipcartSettings.version,"/default/snipcart.css"),t.prepend(e)),f.forEach(function(v){return document.removeEventListener(v,o)})}function h(t){!y||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
+  </script>
+  <div id="snipcart" hidden></div>
+
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#top" aria-label="NIXKEY home">
+        <img class="brand-icon" src="./nixkey_favicon.svg" alt="">
+        <img class="brand-wordmark" src="./nixkey_logo_primary.svg" alt="NIXKEY">
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#catalog">Catalog</a>
+        <a href="#why">Why NIXKEY</a>
+        <a href="#faq">FAQ</a>
+        <a href="mailto:support@nixkey.shop?subject=NIXKEY%20Support">Support</a>
+      </nav>
+
+      <div class="actions">
+        <a class="ghost-button" href="#catalog">Browse Distros</a>
+        <button class="cart-toggle snipcart-checkout" type="button">
+          <span class="cart-summary-copy">
+            <span class="cart-label">Cart</span>
+            <span class="cart-total snipcart-total-price">$0.00</span>
+          </span>
+          <span class="cart-badge snipcart-items-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <article class="panel hero-copy">
+        <div class="hero-frame">
+          <div>
+            <div class="eyebrow">Premium Linux media for first boot and daily carry</div>
+            <h1>The key to digital freedom.</h1>
+            <p>
+              Premium bootable Linux USB drives with clear onboarding, dependable hardware, and a
+              clean path into Linux for both newcomers and experienced users.
+            </p>
+            <div class="hero-cta">
+              <a class="button" href="#catalog">Shop the catalog</a>
+              <a class="ghost-button" href="mailto:support@nixkey.shop?subject=NIXKEY%20Custom%20Build">
+                Request a custom distro
+              </a>
+            </div>
+            <div class="hero-facts">
+              <span>Hand-flashed in Roanoke, Virginia</span>
+              <span>$19.99 on 32GB USB 3.2 media</span>
+            </div>
+          </div>
+
+          <div class="hero-shot-card" aria-label="NIXKEY logo">
+            <div class="hero-logo-stage">
+              <img class="hero-shot-brand" src="./herologo.png" alt="NIXKEY hero logo">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class="trust-strip" aria-label="Trust highlights">
+        <span>Verified live images</span>
+        <span>Clear first-boot guidance</span>
+        <span>Custom distro requests welcome</span>
+      </div>
+    </section>
+
+    <section class="shell" id="catalog">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Catalog</div>
+          <h2>Curated Linux keys for every kind of user.</h2>
+          <p>
+            Newcomers need clarity. Power users need the right build on dependable hardware. Each
+            NIXKEY listing is tuned for a specific use case instead of dumping twenty mediocre
+            options into the same shelf.
+          </p>
+        </div>
+        <div class="filter-row" role="toolbar" aria-label="Catalog filters">
+          <button class="filter-button active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="beginner">Beginner</button>
+          <button class="filter-button" type="button" data-filter="privacy">Privacy</button>
+          <button class="filter-button" type="button" data-filter="creator">Creator</button>
+          <button class="filter-button" type="button" data-filter="gaming">Gaming</button>
+          <button class="filter-button" type="button" data-filter="power">Power user</button>
+        </div>
+      </div>
+
+      <div class="catalog-grid" id="product-grid"></div>
+    </section>
+
+    <section class="shell" id="why">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Why NIXKEY</div>
+          <h2>Built like a premium tool, not a commodity thumb drive.</h2>
+          <p>
+            The differentiator is restraint: dependable hardware, fewer but better choices, and
+            packaging that explains the first boot clearly.
+          </p>
+        </div>
+      </div>
+
+      <div class="story-grid">
+        <article class="panel story">
+          <div class="section-kicker">Store Standard</div>
+          <h2>Clean presentation, dependable builds, less guesswork.</h2>
+          <p>
+            NIXKEY is positioned around name-brand USB 3.2 drives, verified images, and simple
+            onboarding. That is the correct way to look premium in a market full of noisy listings
+            and generic hardware.
+          </p>
+          <p>
+            The messaging here pulls directly from your existing welcome kit and cheat sheet so the
+            storefront feels consistent with the physical product instead of acting like a separate brand.
+          </p>
+        </article>
+
+        <article class="panel faq">
+          <div class="section-kicker">Every Order</div>
+          <div class="card-list">
+            <div class="mini-panel">
+              <strong>Bootable premium USB</strong>
+              <p>Selected distro on USB 3.2 hardware with clean label-forward presentation.</p>
+            </div>
+            <div class="mini-panel">
+              <strong>Quick-start guide</strong>
+              <p>Boot menu keys, Secure Boot guidance, and a clear first-launch path.</p>
+            </div>
+            <div class="mini-panel">
+              <strong>Command cheat sheet</strong>
+              <p>Simple basics for buyers who want to keep learning after first boot.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell" id="faq">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">FAQ</div>
+          <h2>Answers that remove hesitation before checkout.</h2>
+        </div>
+      </div>
+
+      <div class="faq-grid">
+        <article class="panel faq">
+          <div class="faq-label">Booting</div>
+          <h3>Will this work on my computer?</h3>
+          <p>
+            Most modern PCs can boot a NIXKEY drive through the boot menu. The main exception is
+            Secure Boot blocking some distros, which is why every order includes the quick-start
+            card explaining the common fix.
+          </p>
+        </article>
+        <article class="panel faq">
+          <div class="faq-label">Persistence</div>
+          <h3>Can I save files and settings?</h3>
+          <p>
+            Yes for the persistence-ready listings. Those builds are intended to keep Wi-Fi details,
+            browser bookmarks, downloads, and working files between sessions.
+          </p>
+        </article>
+        <article class="panel faq">
+          <div class="faq-label">Beginners</div>
+          <h3>What should I buy if I am new to Linux?</h3>
+          <p>
+            Linux Mint, Ubuntu, and Fedora are the clearest starting points. The catalog marks those
+            listings as beginner-friendly and explains what kind of user each one fits best.
+          </p>
+        </article>
+        <article class="panel faq">
+          <div class="faq-label">Independence</div>
+          <h3>Is NIXKEY affiliated with distro maintainers?</h3>
+          <p>
+            No. NIXKEY is an independent storefront that prepares bootable media for open-source
+            distributions. Distro names are used descriptively so customers know what is installed on
+            each drive.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img class="brand-wordmark" src="./nixkey_logo_primary.svg" alt="NIXKEY">
+        <p>
+          Premium bootable USB drives for Linux newcomers, tinkerers, creators, and privacy-focused users.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-links">
+          <a href="mailto:support@nixkey.shop">support@nixkey.shop</a>
+          <a href="mailto:support@nixkey.shop?subject=NIXKEY%20Custom%20Build">Custom distro requests</a>
+          <a href="mailto:support@nixkey.shop?subject=NIXKEY%20Bulk%20Order">Bulk or team orders</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Store Notes</h4>
+        <div class="footer-links">
+          <a href="#catalog">Browse catalog</a>
+          <a href="#why">Why NIXKEY</a>
+          <a href="#faq">Read FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      {
+        id: "ubuntu",
+        name: "NIX/UBUNTU",
+        distro: "Ubuntu",
+        category: "beginner",
+        useCase: "Mainstream Linux starter",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#FF8C00",
+        description: "A straightforward, widely supported Linux desktop for general use.",
+        specs: ["Beginner friendly", "Widely supported", "USB 3.2", "Welcome kit"],
+      },
+      {
+        id: "mint",
+        name: "NIX/MINT",
+        distro: "Linux Mint",
+        category: "beginner",
+        useCase: "Windows-friendly transition",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#00CED1",
+        description: "Clean, familiar desktop with one of the easiest onboarding paths in Linux.",
+        specs: ["Beginner friendly", "Smooth desktop", "USB 3.2", "Verified image"],
+      },
+      {
+        id: "cachyos",
+        name: "NIX/CACHY",
+        distro: "CachyOS",
+        category: "gaming",
+        useCase: "Performance-tuned Arch option",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#36cfc9",
+        description: "An optimized Arch-based distro aimed at speed, responsiveness, and modern hardware.",
+        specs: ["Arch based", "Performance tuned", "32GB", "USB 3.2"],
+      },
+      {
+        id: "bazzite",
+        name: "NIX/BAZZITE",
+        distro: "Bazzite",
+        category: "gaming",
+        useCase: "Gaming-focused Linux build",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#38bdf8",
+        description: "A polished gaming and handheld-friendly Linux environment with a console-first feel.",
+        specs: ["Gaming ready", "Modern desktop", "32GB", "USB 3.2"],
+      },
+      {
+        id: "popos",
+        name: "NIX/POP",
+        distro: "Pop!_OS",
+        category: "creator",
+        useCase: "Creator-friendly Ubuntu variant",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#48b9c7",
+        description: "A polished desktop Linux experience known for ease, hardware support, and clean workflow.",
+        specs: ["Creator pick", "Polished desktop", "USB 3.2", "Guide included"],
+      },
+      {
+        id: "debian",
+        name: "NIX/DEBIAN",
+        distro: "Debian",
+        category: "power",
+        useCase: "Stable long-life Linux base",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#d70a53",
+        description: "A dependable foundation for users who value maturity, stability, and control.",
+        specs: ["Stable release", "Low churn", "USB 3.2", "Hand verified"],
+      },
+      {
+        id: "mxlinux",
+        name: "NIX/MX",
+        distro: "MX Linux",
+        category: "beginner",
+        useCase: "Light, stable Debian-based desktop",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#2563eb",
+        description: "A lightweight and practical Debian-based distro with a reputation for stability and efficiency.",
+        specs: ["Lightweight", "Stable", "USB 3.2", "Verified image"],
+      },
+      {
+        id: "zorin",
+        name: "NIX/ZORIN",
+        distro: "Zorin OS",
+        category: "beginner",
+        useCase: "Windows-like beginner desktop",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#2563eb",
+        description: "A beginner-focused distro built to feel approachable for users leaving Windows.",
+        specs: ["Beginner friendly", "Familiar layout", "USB 3.2", "Welcome kit"],
+      },
+      {
+        id: "elementary",
+        name: "NIX/ELEMENTARY",
+        distro: "elementary OS",
+        category: "beginner",
+        useCase: "Refined desktop for new Linux users",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#8b5cf6",
+        description: "A design-forward Linux desktop that emphasizes polish, simplicity, and a clean first-run experience.",
+        specs: ["Polished UI", "Beginner friendly", "USB 3.2", "Welcome kit"],
+      },
+      {
+        id: "endeavouros",
+        name: "NIX/ENDEAVOUR",
+        distro: "EndeavourOS",
+        category: "power",
+        useCase: "Arch with a smoother on-ramp",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#f97316",
+        description: "A sharper path into the Arch ecosystem without sacrificing the onboarding.",
+        specs: ["Arch adjacent", "Advanced", "32GB", "USB 3.2"],
+      },
+      {
+        id: "fedora",
+        name: "NIX/FEDORA",
+        distro: "Fedora",
+        category: "creator",
+        useCase: "Modern desktop for developers",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#5DADEC",
+        description: "Fast-moving and polished, with a modern desktop and strong developer appeal.",
+        specs: ["Modern GNOME", "Creator pick", "32GB", "USB 3.2"],
+      },
+      {
+        id: "manjaro",
+        name: "NIX/MANJARO",
+        distro: "Manjaro",
+        category: "power",
+        useCase: "Accessible Arch-based desktop",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#35bf5c",
+        description: "An easier Arch-based experience with a more consumer-friendly setup.",
+        specs: ["Arch based", "Accessible", "32GB", "USB 3.2"],
+      },
+      {
+        id: "tails",
+        name: "NIX/TAILS",
+        distro: "Tails",
+        category: "privacy",
+        useCase: "Privacy-first amnesic sessions",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#7dd3fc",
+        description: "A privacy-focused live system designed for secure, amnesic sessions and portable use.",
+        specs: ["Privacy focused", "Amnesic", "USB 3.2", "Guide included"],
+      },
+      {
+        id: "parrot",
+        name: "NIX/PARROT",
+        distro: "Parrot OS",
+        category: "privacy",
+        useCase: "Privacy and security all-rounder",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#22c55e",
+        description: "A security-minded distro that balances privacy tooling, development, and everyday desktop usability.",
+        specs: ["Security focused", "Privacy ready", "USB 3.2", "Verified image"],
+      },
+      {
+        id: "kicksecure",
+        name: "NIX/KICKSECURE",
+        distro: "Kicksecure",
+        category: "privacy",
+        useCase: "Secure-by-default hardened desktop",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#06b6d4",
+        description: "A hardened Debian-based system built around stronger defaults, lower attack surface, and privacy-aware updates.",
+        specs: ["Hardened Debian", "Secure by default", "USB 3.2", "Guide included"],
+      },
+      {
+        id: "qubes",
+        name: "NIX/QUBES",
+        distro: "Qubes OS",
+        category: "privacy",
+        useCase: "Compartmentalized security workflow",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#60a5fa",
+        description: "An advanced security-focused platform built around isolation and compartmentalization for higher-risk workflows.",
+        specs: ["Advanced security", "Compartmentalized", "USB 3.2", "Verified image"],
+      },
+      {
+        id: "kali",
+        name: "NIX/KALI",
+        distro: "Kali Linux",
+        category: "power",
+        useCase: "Security labs and training",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#8b5cf6",
+        description: "A portable toolkit for security training, lab work, and experienced Linux users.",
+        specs: ["Security tools", "Advanced", "USB 3.2", "Verified image"],
+      },
+      {
+        id: "arch",
+        name: "NIX/ARCH",
+        distro: "Arch Linux",
+        category: "power",
+        useCase: "Minimalist rolling release",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#1793d1",
+        description: "A clean option for experienced users who want a true Arch environment.",
+        specs: ["Rolling release", "Minimal", "32GB", "USB 3.2"],
+      },
+      {
+        id: "opensuse",
+        name: "NIX/SUSE",
+        distro: "openSUSE",
+        category: "power",
+        useCase: "Reliable Linux with strong tooling",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#73ba25",
+        description: "A dependable distro known for strong administration tools and flexible release models.",
+        specs: ["Reliable tools", "Admin friendly", "USB 3.2", "Verified image"],
+      },
+      {
+        id: "pikaos",
+        name: "NIX/PIKA",
+        distro: "PikaOS",
+        category: "gaming",
+        useCase: "Gaming and desktop performance",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#f59e0b",
+        description: "A gaming-focused Linux desktop built for speed, graphics, and daily usability.",
+        specs: ["Gaming focused", "Fast desktop", "32GB", "USB 3.2"],
+      },
+      {
+        id: "nixos",
+        name: "NIX/NIXOS",
+        distro: "NixOS",
+        category: "power",
+        useCase: "Declarative Linux for tinkerers",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#7e5bef",
+        description: "A distinctive distro built around reproducible, declarative system configuration.",
+        specs: ["Declarative", "Advanced", "32GB", "USB 3.2"],
+      },
+      {
+        id: "kdeneon",
+        name: "NIX/NEON",
+        distro: "KDE neon",
+        category: "creator",
+        useCase: "Latest KDE Plasma experience",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#25b7d3",
+        description: "A clean Ubuntu-based platform centered on the newest KDE Plasma desktop.",
+        specs: ["KDE Plasma", "Polished UI", "USB 3.2", "Verified image"],
+      },
+      {
+        id: "omarchy",
+        name: "NIX/OMARCHY",
+        distro: "Omarchy",
+        category: "power",
+        useCase: "Boutique enthusiast Linux build",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#94a3b8",
+        description: "A more niche enthusiast option for buyers looking for something less mainstream.",
+        specs: ["Niche distro", "Enthusiast pick", "32GB", "USB 3.2"],
+      },
+      {
+        id: "puppy",
+        name: "NIX/PUPPY",
+        distro: "Puppy Linux",
+        category: "beginner",
+        useCase: "Lightweight Linux for older hardware",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#fbbf24",
+        description: "A tiny, lightweight Linux that is useful for reviving older or lower-spec machines.",
+        specs: ["Lightweight", "Older hardware", "USB 3.2", "Guide included"],
+      },
+      {
+        id: "void",
+        name: "NIX/VOID",
+        distro: "Void Linux",
+        category: "power",
+        useCase: "Independent Linux for advanced users",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#84cc16",
+        description: "A lean independent distro for users who want something outside the main family trees.",
+        specs: ["Independent distro", "Advanced", "USB 3.2", "Verified image"],
+      },
+      {
+        id: "kubuntu",
+        name: "NIX/KUBUNTU",
+        distro: "Kubuntu",
+        category: "beginner",
+        useCase: "Ubuntu with KDE desktop",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#0079c1",
+        description: "A KDE-based Ubuntu variant with a more traditional desktop feel.",
+        specs: ["KDE desktop", "Beginner friendly", "USB 3.2", "Welcome kit"],
+      },
+      {
+        id: "lubuntu",
+        name: "NIX/LUBUNTU",
+        distro: "Lubuntu",
+        category: "beginner",
+        useCase: "Light Ubuntu for lower-spec machines",
+        storage: "32GB",
+        price: 19.99,
+        accent: "#3b82f6",
+        description: "A lighter Ubuntu flavor aimed at speed and older hardware support.",
+        specs: ["Lightweight", "Ubuntu based", "USB 3.2", "Guide included"],
+      },
+    ];
+
+    const productGrid = document.getElementById("product-grid");
+    const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+    const categoryLabels = {
+      beginner: "Beginner",
+      privacy: "Privacy",
+      creator: "Creator",
+      gaming: "Gaming",
+      power: "Power user",
+    };
+    const categoryMeta = {
+      beginner: {
+        title: "Beginner-Friendly",
+        note: "Low-friction Linux picks for first-time users, Windows switchers, and older machines.",
+      },
+      creator: {
+        title: "Creator",
+        note: "Modern desktop builds for developers and users who want a more polished daily driver.",
+      },
+      gaming: {
+        title: "Gaming",
+        note: "Performance-first Linux builds for desktop gaming, handheld use, and tuned graphics setups.",
+      },
+      privacy: {
+        title: "Privacy & Security",
+        note: "Focused builds for secure sessions, portable privacy, and security-minded workflows.",
+      },
+      power: {
+        title: "Power User & Rolling",
+        note: "Advanced distros for enthusiasts, tinkerers, and users who want deeper control.",
+      },
+    };
+    const categoryOrder = ["beginner", "creator", "gaming", "privacy", "power"];
+    const distroDetails = {
+      ubuntu: { icon: "U", family: "Ubuntu", desktop: "GNOME", release: "LTS-friendly", fit: "General purpose" },
+      mint: { icon: "LM", family: "Ubuntu / Debian", desktop: "Cinnamon", release: "Stable point releases", fit: "Windows switchers" },
+      cachyos: { icon: "CA", family: "Arch-based", desktop: "KDE Plasma", release: "Rolling release", fit: "High-performance desktops" },
+      bazzite: { icon: "BZ", family: "Fedora Atomic", desktop: "GNOME or KDE", release: "Image-based updates", fit: "Gaming and handhelds" },
+      popos: { icon: "PO", family: "Ubuntu-based", desktop: "COSMIC / GNOME", release: "Stable releases", fit: "Creators and laptops" },
+      debian: { icon: "D", family: "Debian", desktop: "GNOME", release: "Stable branch", fit: "Long-life systems" },
+      mxlinux: { icon: "MX", family: "Debian-based", desktop: "XFCE", release: "Stable branch", fit: "Lightweight daily use" },
+      zorin: { icon: "ZO", family: "Ubuntu-based", desktop: "GNOME-based Zorin", release: "Stable releases", fit: "New Linux users" },
+      elementary: { icon: "EO", family: "Ubuntu-based", desktop: "Pantheon", release: "Stable releases", fit: "Design-first beginners" },
+      endeavouros: { icon: "EN", family: "Arch-based", desktop: "XFCE", release: "Rolling release", fit: "Arch with onboarding" },
+      fedora: { icon: "F", family: "Fedora", desktop: "GNOME", release: "Fast stable cadence", fit: "Developers and makers" },
+      manjaro: { icon: "MJ", family: "Arch-based", desktop: "KDE Plasma", release: "Rolling release", fit: "Accessible Arch users" },
+      tails: { icon: "TL", family: "Debian-based", desktop: "GNOME", release: "Live amnesic sessions", fit: "Portable privacy" },
+      parrot: { icon: "PR", family: "Debian-based", desktop: "MATE", release: "Stable releases", fit: "Privacy and security work" },
+      kicksecure: { icon: "KS", family: "Debian-based", desktop: "XFCE", release: "Hardened stable base", fit: "Secure-by-default setups" },
+      qubes: { icon: "QB", family: "Xen-based platform", desktop: "XFCE", release: "Security-focused cadence", fit: "High-isolation workflows" },
+      kali: { icon: "KL", family: "Debian-based", desktop: "XFCE", release: "Rolling release", fit: "Security labs and training" },
+      arch: { icon: "AR", family: "Arch Linux", desktop: "Minimal base", release: "Rolling release", fit: "DIY power users" },
+      opensuse: { icon: "SU", family: "openSUSE", desktop: "KDE Plasma", release: "Leap or Tumbleweed", fit: "Admin-friendly desktops" },
+      pikaos: { icon: "PK", family: "Ubuntu-based", desktop: "GNOME", release: "Performance-tuned", fit: "Gaming desktops" },
+      nixos: { icon: "NX", family: "NixOS", desktop: "Flexible", release: "Channel-based", fit: "Reproducible systems" },
+      kdeneon: { icon: "KN", family: "Ubuntu-based", desktop: "KDE Plasma", release: "Latest Plasma", fit: "KDE-first users" },
+      omarchy: { icon: "OM", family: "Enthusiast build", desktop: "Custom stack", release: "Experimental", fit: "Niche tinkerers" },
+      puppy: { icon: "PY", family: "Independent", desktop: "JWM / ROX", release: "Lightweight live focus", fit: "Older hardware" },
+      void: { icon: "VD", family: "Independent", desktop: "XFCE", release: "Rolling release", fit: "Independent power users" },
+      kubuntu: { icon: "KU", family: "Ubuntu-based", desktop: "KDE Plasma", release: "LTS-friendly", fit: "Classic desktop fans" },
+      lubuntu: { icon: "LU", family: "Ubuntu-based", desktop: "LXQt", release: "LTS-friendly", fit: "Low-spec machines" },
+    };
+
+    let activeFilter = "all";
+
+    const currency = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+    function renderProductIcon(product) {
+      const label = (distroDetails[product.id]?.icon || product.distro.slice(0, 2)).toUpperCase();
+      const fontSize = label.length > 1 ? 10.5 : 14;
+      const letterSpacing = label.length > 1 ? 0.8 : 0;
+      return `
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="11.5" fill="currentColor" opacity="0.12"></circle>
+          <circle cx="16" cy="16" r="11.5" opacity="0.42"></circle>
+          <text
+            x="16"
+            y="20"
+            text-anchor="middle"
+            font-size="${fontSize}"
+            font-family="Inter, Arial, sans-serif"
+            font-weight="800"
+            letter-spacing="${letterSpacing}"
+            fill="currentColor"
+          >${label}</text>
+        </svg>
+      `;
+    }
+
+    function renderProductDetail(label, value) {
+      return `
+        <div class="product-detail">
+          <span class="product-detail-label">${label}</span>
+          <div class="product-detail-value">${value}</div>
+        </div>
+      `;
+    }
+
+    function renderProductCard(product) {
+      const accentSoft = hexToRgba(product.accent, 0.12);
+      const accentSoftStrong = hexToRgba(product.accent, 0.18);
+      const accentBorder = hexToRgba(product.accent, 0.34);
+      const accentBorderStrong = hexToRgba(product.accent, 0.54);
+      const detail = distroDetails[product.id] || {};
+
+      return `
+        <article
+          class="product-card"
+          style="
+            --accent:${product.accent};
+            --accent-soft:${accentSoft};
+            --accent-soft-strong:${accentSoftStrong};
+            --accent-border:${accentBorder};
+            --accent-border-strong:${accentBorderStrong};
+          "
+        >
+          <div class="product-top">
+            <div class="product-heading">
+              <div class="product-icon">${renderProductIcon(product)}</div>
+              <div>
+                <h3>${product.name}</h3>
+                <div class="product-subtitle">${product.distro}</div>
+              </div>
+            </div>
+            <div class="product-id">
+              <span class="badge accent"><strong>${product.storage}</strong></span>
+              <span class="badge">${categoryLabels[product.category]}</span>
+            </div>
+          </div>
+
+          <p class="product-summary">${product.description}</p>
+
+          <div class="product-meta">
+            <span>${product.useCase}</span>
+            <span>${product.specs[0]}</span>
+          </div>
+
+          <div class="product-details">
+            ${renderProductDetail("Family", detail.family || "Linux")}
+            ${renderProductDetail("Desktop", detail.desktop || "Varies")}
+            ${renderProductDetail("Release", detail.release || "Current image")}
+            ${renderProductDetail("Best for", detail.fit || product.useCase)}
+          </div>
+
+          <div class="product-footer">
+            <div class="price-block">
+              <strong>${currency.format(product.price)}</strong>
+              <div class="price-meta">Flat storefront price</div>
+            </div>
+            <button
+              class="add-button snipcart-add-item"
+              type="button"
+              data-item-id="${product.id}"
+              data-item-price="${product.price.toFixed(2)}"
+              data-item-name="${product.name}"
+              data-item-description="${product.description}"
+              data-item-image="./nixmintcard.png"
+              data-item-categories="${product.category}|linux-usb"
+              data-item-custom1-name="Distribution"
+              data-item-custom1-type="readonly"
+              data-item-custom1-value="${product.distro}"
+              data-item-custom2-name="Storage"
+              data-item-custom2-type="readonly"
+              data-item-custom2-value="${product.storage}"
+              data-item-custom3-name="Use case"
+              data-item-custom3-type="readonly"
+              data-item-custom3-value="${product.useCase}"
+            >
+              Add to cart
+            </button>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderGroup(category, items) {
+      const meta = categoryMeta[category];
+      return `
+        <section class="catalog-group">
+          <div class="catalog-group-head">
+            <div class="catalog-group-copy">
+              <div class="catalog-group-title">${meta.title}</div>
+              <div class="catalog-group-note">${meta.note}</div>
+            </div>
+            <div class="catalog-group-count">${items.length} distros</div>
+          </div>
+          <div class="catalog-group-grid">
+            ${items.map(renderProductCard).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderProducts() {
+      const sortedProducts = [...products].sort((a, b) => a.distro.localeCompare(b.distro));
+
+      if (activeFilter === "all") {
+        productGrid.innerHTML = categoryOrder
+          .map((category) => {
+            const items = sortedProducts.filter((product) => product.category === category);
+            return items.length ? renderGroup(category, items) : "";
+          })
+          .join("");
+        return;
+      }
+
+      const filtered = sortedProducts.filter((product) => product.category === activeFilter);
+      productGrid.innerHTML = renderGroup(activeFilter, filtered);
+    }
+
+    function hexToRgba(hex, alpha) {
+      const value = hex.replace("#", "");
+      const bigint = Number.parseInt(value, 16);
+      const red = (bigint >> 16) & 255;
+      const green = (bigint >> 8) & 255;
+      const blue = bigint & 255;
+      return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+    }
+
+    function setFilter(nextFilter) {
+      activeFilter = nextFilter;
+      filterButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.filter === nextFilter);
+      });
+      renderProducts();
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => setFilter(button.dataset.filter));
+    });
+
+    renderProducts();
+  </script>
+</body>
+</html>

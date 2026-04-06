@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIXKEY Branding Preview</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --nix-teal: #00CED1;
+            --forge-orange: #FF8C00;
+            --gunmetal: #2F4F4F;
+            --terminal-black: #121212;
+            --steel-white: #F5F5F5;
+        }
+
+        body {
+            background-color: var(--terminal-black);
+            color: var(--steel-white);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        h1 {
+            color: var(--nix-teal);
+            margin-bottom: 40px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .palette-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .swatch {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .logo-box {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .logo-box:hover {
+            border-color: var(--nix-teal);
+            transform: translateY(-2px);
+        }
+
+        .logo-label {
+            display: block;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* LOGO STYLES */
+
+        /* Concept A: The Root Directory */
+        .logo-a {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 3rem;
+            letter-spacing: -2px;
+        }
+        .logo-a .nix { color: var(--steel-white); }
+        .logo-a .slash { color: var(--forge-orange); font-weight: 300; margin: 0 5px; }
+        .logo-a .key { color: var(--nix-teal); }
+
+        /* Concept B: The Prompt */
+        .logo-b {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+        .logo-b .prompt { color: var(--forge-orange); margin-right: 10px; }
+        .logo-b .text { color: var(--steel-white); }
+        .logo-b .cursor { 
+            display: inline-block; 
+            width: 15px; 
+            height: 35px; 
+            background-color: var(--nix-teal);
+            vertical-align: middle;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+        }
+
+        /* Concept C: The Hardware */
+        .logo-c {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 3rem;
+            letter-spacing: -1px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .logo-c .icon {
+            width: 40px;
+            height: 40px;
+            background: var(--nix-teal);
+            margin-right: 15px;
+            border-radius: 4px;
+            position: relative;
+        }
+        .logo-c .icon::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10px;
+            width: 20px;
+            height: 15px;
+            background: var(--terminal-black);
+        }
+        .logo-c .text-nix { color: var(--steel-white); }
+        .logo-c .text-key { color: #888; font-weight: 300; }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>NIXKEY <span style="font-size: 0.5em; color: #666;">// Brand Preview</span></h1>
+
+    <div class="palette-container">
+        <div class="swatch" style="background-color: var(--nix-teal); color: #000;">#00CED1<br>Nix Teal</div>
+        <div class="swatch" style="background-color: var(--forge-orange); color: #000;">#FF8C00<br>Forge Orange</div>
+        <div class="swatch" style="background-color: var(--gunmetal);">#2F4F4F<br>Gunmetal</div>
+        <div class="swatch" style="background-color: var(--terminal-black); border: 1px solid #333;">#121212<br>Terminal</div>
+        <div class="swatch" style="background-color: var(--steel-white); color: #000;">#F5F5F5<br>Steel White</div>
+    </div>
+
+    <div class="logo-container">
+        
+        <!-- Concept A -->
+        <div class="logo-box">
+            <span class="logo-label">Concept A: The Root Directory</span>
+            <div class="logo-a">
+                <span class="nix">NIX</span><span class="slash">/</span><span class="key">KEY</span>
+            </div>
+        </div>
+
+        <!-- Concept B -->
+        <div class="logo-box">
+            <span class="logo-label">Concept B: The Terminal Prompt</span>
+            <div class="logo-b">
+                <span class="prompt">&gt;_</span><span class="text">NIXKEY</span><span class="cursor"></span>
+            </div>
+        </div>
+
+        <!-- Concept C -->
+        <div class="logo-box">
+            <span class="logo-label">Concept C: The Hardware Block</span>
+            <div class="logo-c">
+                <div class="icon"></div>
+                <span class="text-nix">NIX</span><span class="text-key">KEY</span>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

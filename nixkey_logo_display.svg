@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 90" role="img" aria-labelledby="title">
+  <title>NIXKEY</title>
+  <defs>
+    <style>
+      .text-nix { fill: #F5F5F5; font: 900 80px Inter, Arial, sans-serif; }
+      .text-slash { fill: #FF8C00; font: 300 80px Inter, Arial, sans-serif; }
+      .text-key { fill: #00CED1; font: 900 80px Inter, Arial, sans-serif; }
+    </style>
+  </defs>
+  <text x="0" y="68" class="text-nix">NIX</text>
+  <text x="145" y="68" class="text-slash">/</text>
+  <text x="180" y="68" class="text-key">KEY</text>
+</svg>
