@@ -1006,8 +1006,8 @@
       </article>
 
       <div class="trust-strip" aria-label="Trust highlights">
-        <span>Verified live images</span>
-        <span>Clear first-boot guidance</span>
+        <span>Verified hardware</span>
+        <span>Physical guide for first boot</span>
         <span>Custom distro requests welcome</span>
       </div>
     </section>
@@ -1018,8 +1018,8 @@
           <div class="section-kicker">Catalog</div>
           <h2>Curated Linux keys for every kind of user.</h2>
           <p>
-            Newcomers need clarity. Power users need the right build on dependable hardware. Each
-            NIXKEY listing is tuned for a specific use case instead of dumping twenty mediocre
+            Newcomers need clarity. Tinkerers need the right build on solid, dependable hardware. Each
+            NIXKEY listing is tuned for a specific outcome instead of dumping twenty mediocre
             options into the same shelf.
           </p>
         </div>
@@ -1051,15 +1051,15 @@
       <div class="story-grid">
         <article class="panel story">
           <div class="section-kicker">Tinkerer's Toolkit</div>
-          <h2>Built for those who value craftsmanship over convenience.</h2>
+          <h2>Solid metal hardware, hand-verified for the first boot.</h2>
           <p>
-            NIXKEY isn't just a USB drive; it's a hand-verified tool for the modern tinkerer. We
-            focus on solid hardware and verified images so you can focus on exploring Linux
-            without the generic hardware headaches.
+            NIXKEY is built on metal-cased USB 3.2 drives, checksum-verified images, and 
+            a physical guide for onboarding. This is the correct way to build a tool that lives 
+            on your keychain.
           </p>
           <p>
-            Every drive is treated as a premium tool, designed to live on your keychain and
-            survive the bottom of your bag while providing the fastest boot times possible.
+            The messaging here pulls directly from your existing welcome kit and cheat sheet so the
+            storefront feels consistent with the physical product instead of acting like a separate brand.
           </p>
         </article>
 
@@ -1638,8 +1638,7 @@
           <div class="product-details">
             ${renderProductDetail("Family", detail.family || "Linux")}
             ${renderProductDetail("Desktop", detail.desktop || "Varies")}
-            ${renderProductDetail("Release", detail.release || "Current image")}
-            ${renderProductDetail("Best for", detail.fit || product.useCase)}
+            ${renderProductDetail("Status", "Hand-verified")}
           </div>
 
           <div class="product-footer">
