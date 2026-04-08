@@ -10,7 +10,7 @@
 
 Thank you for choosing NIXKEY! 
 
-Your "Key" has been hand-flashed and verified in Roanoke, VA, using our 
+Your "Key" has been hand-flashed and verified using our 
 multi-step integrity check. You are now holding a fully functional, 
 portable Linux environment.
 
@@ -66,5 +66,6 @@ If you have trouble booting or want to request a custom distro:
 - Email: support@nixkey.shop
 
 "The world is yours. We just provide the key."
-- The NIXKEY Team (Roanoke, VA)
+- The NIXKEY Team
 ================================================================================
+=
