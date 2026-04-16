@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIXKEY // Technical Onboarding Guide v2.5</title>
+    <title>NIXKEY // Technical Onboarding Guide v3.0</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700;800&display=swap');
 
@@ -36,11 +36,39 @@
         }
 
         /* HEADER */
-        header { border-bottom: 2px solid var(--terminal-black); padding-bottom: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: flex-end; }
+        header { border-bottom: 2px solid var(--terminal-black); padding-bottom: 10px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-end; }
         .logo { font-weight: 900; font-size: 24pt; letter-spacing: -2px; color: var(--terminal-black); line-height: 1; }
         .logo .slash { color: var(--forge-orange); font-weight: 300; }
         .logo .key { color: var(--nix-teal); }
         .header-meta { text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; color: #888; text-transform: uppercase; line-height: 1.2; }
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .workflow-step {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 7px 8px;
+            background: #fafafa;
+        }
+        .workflow-label {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6pt;
+            letter-spacing: 0.8px;
+            color: #888;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+        }
+        .workflow-copy {
+            display: block;
+            font-size: 7.5pt;
+            line-height: 1.2;
+            color: var(--terminal-black);
+            font-weight: 700;
+        }
 
         /* GRID SYSTEM */
         .main-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; flex-grow: 1; }
@@ -84,6 +112,41 @@
 
         .checklist { list-style: none; padding: 0; }
         .checklist li::before { content: '[ ] '; font-family: 'JetBrains Mono'; color: var(--nix-teal); font-weight: 800; margin-right: 5px; }
+        .steps {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 8px 0;
+            counter-reset: step;
+        }
+        .steps li {
+            counter-increment: step;
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: var(--nix-teal);
+            color: #000;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7pt;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .micro-note {
+            font-size: 6.8pt;
+            color: #666;
+            line-height: 1.25;
+        }
 
     </style>
 </head>
@@ -97,18 +160,52 @@
         <header>
             <div class="logo">NIX<span class="slash">/</span><span class="key">KEY</span></div>
             <div class="header-meta">
-                NK-MASTER-V2.5 // VERIFIED_BINaries<br>
+                NK-MASTER-V3.0 // VERIFIED_BINaries<br>
                 ENCRYPTION: AES-XTS-PLAIN64<br>
                 FIRMWARE: UEFI_READY_CSM_COMPAT
             </div>
         </header>
 
+        <div class="workflow">
+            <div class="workflow-step">
+                <span class="workflow-label">Step 01</span>
+                <span class="workflow-copy">Insert NIXKEY into a USB port.</span>
+            </div>
+            <div class="workflow-step">
+                <span class="workflow-label">Step 02</span>
+                <span class="workflow-copy">Power on and tap your boot key.</span>
+            </div>
+            <div class="workflow-step">
+                <span class="workflow-label">Step 03</span>
+                <span class="workflow-copy">Choose the USB or UEFI entry.</span>
+            </div>
+            <div class="workflow-step">
+                <span class="workflow-label">Step 04</span>
+                <span class="workflow-copy">Select Try or Install.</span>
+            </div>
+            <div class="workflow-step">
+                <span class="workflow-label">Step 05</span>
+                <span class="workflow-copy">Use Power Off before removing it.</span>
+            </div>
+        </div>
+
         <div class="main-grid">
             <!-- COLUMN 1: THE BOOT PHASE -->
             <div class="col">
                 <section>
-                    <h2>01 // Global Boot Matrix</h2>
-                    <p>Insert NIXKEY. Power on and tap trigger key repeatedly until menu appears:</p>
+                    <h2>01 // Quick Start</h2>
+                    <ol class="steps">
+                        <li><strong>Plug in:</strong> Insert NIXKEY into a USB 3.0 port if available.</li>
+                        <li><strong>Power on:</strong> Turn on the computer and tap the boot-menu key immediately.</li>
+                        <li><strong>Select the key:</strong> Choose <code>USB Storage Device</code>, <code>UEFI: USB</code>, or the NIXKEY entry.</li>
+                        <li><strong>Launch Linux:</strong> Select <strong>Try</strong> or <strong>Try / Install</strong> to reach the desktop.</li>
+                    </ol>
+                    <p class="micro-note">If the machine goes straight back to Windows or macOS, move to section 03.</p>
+                </section>
+
+                <section>
+                    <h2>02 // Boot Key Matrix</h2>
+                    <p>Common trigger keys by manufacturer:</p>
                     <table>
                         <tr><td>DELL / LENOVO / INTEL</td><td class="key-trigger">F12</td></tr>
                         <tr><td>HP / COMPAQ</td><td class="key-trigger">F9 / ESC</td></tr>
@@ -120,7 +217,7 @@
                 </section>
 
                 <section>
-                    <h2>02 // BIOS Optimization</h2>
+                    <h2>03 // If The USB Is Skipped</h2>
                     <div class="box warning">
                         <span class="box-title">#1: SECURE BOOT</span>
                         If the drive is skipped, enter BIOS (F2/Del) and set <strong>Secure Boot</strong> to <strong>[Disabled]</strong>.
@@ -136,7 +233,7 @@
                 </section>
 
                 <section>
-                    <h2>03 // Display Fixes</h2>
+                    <h2>04 // Screen & Display Fixes</h2>
                     <p><strong>Black Screen?</strong> Press <code>e</code> at boot menu, find <code>quiet splash</code>, replace with <code>nomodeset</code>, then F10.</p>
                     <p><strong>Tiny Icons?</strong> Search Settings for "Display" &rarr; "Fractional Scaling" (Set to 150% or 200%).</p>
                 </section>
@@ -145,17 +242,19 @@
             <!-- COLUMN 2: THE INTERFACE PHASE -->
             <div class="col">
                 <section>
-                    <h2>04 // First 5 Minutes</h2>
-                    <ul class="checklist">
-                        <li><strong>Wi-Fi:</strong> Click the network icon near the clock.</li>
-                        <li><strong>Update:</strong> Find "Update Manager" or run <code>sudo apt update</code>.</li>
-                        <li><strong>Browser:</strong> Open Firefox/LibreWolf to verify web.</li>
-                        <li><strong>Time:</strong> Right-click clock &rarr; "Set Automatically".</li>
-                    </ul>
+                    <h2>05 // First 5 Minutes</h2>
+                    <p>Once the desktop appears, do these in order:</p>
+                    <ol class="steps">
+                        <li><strong>Join Wi-Fi:</strong> Click the network icon near the clock and connect.</li>
+                        <li><strong>Open the browser:</strong> Launch Firefox or LibreWolf to confirm the web works.</li>
+                        <li><strong>Check the clock:</strong> Open time settings and enable automatic time if needed.</li>
+                        <li><strong>Run updates:</strong> Open Update Manager or use the package command in section 06.</li>
+                    </ol>
                 </section>
 
                 <section>
-                    <h2>05 // Software Rosetta</h2>
+                    <h2>06 // Install Software</h2>
+                    <p>Use the package manager that matches your distro family:</p>
                     <span class="box-title" style="color:#999; font-size:6.5pt;">DEBIAN / MINT / UBUNTU / POP / KALI</span>
                     <table>
                         <tr><td><code>sudo apt update</code></td><td>Refresh Repo</td></tr>
@@ -182,7 +281,7 @@
                 </section>
 
                 <section>
-                    <h2>06 // Shortcuts (Pro)</h2>
+                    <h2>07 // Useful Shortcuts</h2>
                     <table>
                         <tr><td><span class="cmd">Ctrl+Alt+T</span></td><td>Open Terminal</td></tr>
                         <tr><td><span class="cmd">Super (Win)</span></td><td>Open App Menu</td></tr>
@@ -195,7 +294,25 @@
             <!-- COLUMN 3: THE EXPERT PHASE -->
             <div class="col">
                 <section>
-                    <h2>07 // Terminal Diagnostics</h2>
+                    <h2>08 // Safe Use</h2>
+                    <div class="box info">
+                        <span class="box-title">SHUTDOWN PROTOCOL</span>
+                        When you are finished, use <strong>Power Off</strong> from the system menu and let the desktop shut down fully before removing your NIXKEY.
+                    </div>
+                    <p><strong>Drive Safety:</strong> NIXKEY runs from the USB and will not touch your Windows or Mac files unless you manually open or mount your internal drive.</p>
+                </section>
+
+                <section>
+                    <h2>09 // Permanent Install</h2>
+                    <p>Ready to move beyond the live session? Every NIXKEY includes an "Install" shortcut on the desktop.</p>
+                    <ul>
+                        <li><strong>Backup:</strong> Back up your hard drive first.</li>
+                        <li><strong>Dual Boot:</strong> You can install Linux <em>alongside</em> Windows if space allows.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>10 // Terminal Diagnostics</h2>
                     <table>
                         <tr><td><span class="cmd">lsblk</span></td><td>Identify all drives</td></tr>
                         <tr><td><span class="cmd">htop</span></td><td>Live Task Manager</td></tr>
@@ -207,26 +324,8 @@
                 </section>
 
                 <section>
-                    <h2>08 // Persistence & Safety</h2>
-                    <div class="box info">
-                        <span class="box-title">DATA RETENTION</span>
-                        Your NIXKEY saves files to <code>/home/[user]</code>. <strong>Crucial:</strong> You must use <strong>Power Off</strong> from the menu to ensure data is written to the drive.
-                    </div>
-                    <p><strong>Safe Mode:</strong> NIXKEY is isolated. It will not touch your Windows/Mac files unless you manually mount your internal drive.</p>
-                </section>
-
-                <section>
-                    <h2>09 // Permanent Install</h2>
-                    <p>Ready to ditch Windows? Every NIXKEY includes an "Install" shortcut on the desktop.</p>
-                    <ul>
-                        <li><strong>Backup:</strong> Backup your hard drive first!</li>
-                        <li><strong>Dual Boot:</strong> You can install Linux <em>alongside</em> Windows if space allows.</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>10 // Support Protocol</h2>
-                    <p>Issues? We offer human-led technical support for every key we flash.</p>
+                    <h2>11 // Support Protocol</h2>
+                    <p>Still stuck? We offer human-led technical support for every key we flash.</p>
                     <code>support@nixkey.shop</code>
                 </section>
             </div>
